@@ -12,3 +12,5 @@
 
 ###### Build the code  - Production (Uglify, minimise the code and the images)
 ```>$ npm run production ```
+
+###### Copy dist to master/ branch
