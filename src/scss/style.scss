@@ -159,6 +159,16 @@ body {
     font-weight: 300;
 }
 
+.card {
+    padding-bottom:100px;    
+}
+
+.card-footer {
+    position:absolute;
+    bottom:0;
+    width:100%;
+}
+
 // Footer
 .footer {
     padding: 24px 0;

@@ -11,3 +11,7 @@ Thumbs.db
 # node modules #
 ######################
 node_modules/*
+
+# dist #
+######################
+dist/*
