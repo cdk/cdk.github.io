@@ -1,5 +1,7 @@
 # Readme
 
+Important! Currently you need to use Node v14.
+
 #### Install instructions
 ###### Install all the project dependencies
 ```>$ npm install ```
