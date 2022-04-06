@@ -1,7 +1,7 @@
-// Fonts import
+/* Fonts import */
 @import url('https://fonts.googleapis.com/css?family=Montserrat:200,300,400,700');
 
-// Generic rules
+/* Generic rules */
 body {
     background-color: #f1f1f4;
 }
@@ -37,7 +37,7 @@ body {
     min-height: 50vh;
 }
 
-// Navigation bar
+/* Navigation bar */
 .bg-custom{
     background-color: rgba(35, 57, 65, 0.95) !important;
 }
@@ -99,7 +99,7 @@ body {
     cursor: pointer;
 }
 
-// landing section
+/* landing section */
 .page-header{
     color: #fff;
     min-height: 90vh;
@@ -146,7 +146,7 @@ body {
     color: #000;
 }
 
-// custom card
+/* custom card */
 .ccard{
     margin-top: 50px;
     margin-bottom: 50px;
@@ -159,7 +159,7 @@ body {
     font-weight: 300;
 }
 
-// Footer
+/* Footer */
 .footer {
     padding: 24px 0;
 }
@@ -192,23 +192,23 @@ body {
 }
 
 
-// Media queries
+/* Media queries */
 
-// Extra small devices (portrait phones, less than 576px)
+/* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575px) { 
     .h50{
         min-height: 30vh;
     }
 }
 
-// Small devices (landscape phones, 576px and up)
+/* Small devices (landscape phones, 576px and up) */
 @media (min-width: 576px) and (max-width: 767px) { }
 
-// Medium devices (tablets, 768px and up)
+/* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) and (max-width: 991px) {  }
 
-// Large devices (desktops, 992px and up)
+/* Large devices (desktops, 992px and up) */
 @media (min-width: 992px) and (max-width: 1199px) {  }
 
-// Extra large devices (large desktops, 1200px and up)
+/* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {  }

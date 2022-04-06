@@ -45,12 +45,6 @@ module.exports = {
 			test: /\.html$/,
 			loader: 'html-loader'
 		},{
-			test: /\.scss$/,
-			use: ExtractTextPlugin.extract({
-				use: ["css-loader", "sass-loader"],
-				fallback: "style-loader"
-			})
-		},{
 			test: /\.css$/,
 			use: ExtractTextPlugin.extract({
 				use: ["css-loader"],
