@@ -1,56 +1,51 @@
 import "./imports";
 
-var transparent = true;
+let transparent = true;
+let scroll_distance = 0;
 
-var scroll_distance = 0;
-
-$(document).ready(function(){
-    var $navbar = $('.navbar[color-on-scroll]');
-    scroll_distance = $navbar.attr('color-on-scroll') || 500;
-
-    if($('.navbar[color-on-scroll]').length != 0){
+document.addEventListener("DOMContentLoaded", () => {
+    const navbar = document.getElementById("navbar");
+    scroll_distance = navbar.getAttribute("color-on-scroll") || 500;
+    if (navbar.length !== 0) {
         webApp.checkScrollForTransparentNavbar();
-        $(window).on('scroll', webApp.checkScrollForTransparentNavbar)
+        window.addEventListener("scroll", webApp.checkScrollForTransparentNavbar);
     }
-
-    $('.scroll').click(function() {
-        $('html, body').animate({
-            scrollTop: eval($('#' + $(this).attr('target')).offset().top - 270)
-        }, 1000);
-    });
-
+    Array.from(document.getElementsByClassName("scroll")).forEach(elem =>
+        elem.addEventListener("click", () => {
+            const val = document.getElementById(elem.getAttribute("target")).offsetTop;
+            window.scroll({top: val - 270, left: 0, behavior: "smooth"});
+        }));
 });
 
-var webApp = {
-    misc:{
+const webApp = {
+    misc: {
         navbar_menu_visible: 0
     },
-
-    checkScrollForTransparentNavbar: debounce(function() {
-            if($(document).scrollTop() > scroll_distance ) {
-                if(transparent) {
-                    transparent = false;
-                    $('.navbar[color-on-scroll]').removeClass('navbar-transparent');
-                }
-            } else {
-                if( !transparent ) {
-                    transparent = true;
-                    $('.navbar[color-on-scroll]').addClass('navbar-transparent');
-                }
+    checkScrollForTransparentNavbar: debounce(() => {
+        if (window.scrollY > scroll_distance) {
+            if (transparent) {
+                transparent = false;
+                document.getElementById("navbar").classList.remove("navbar-transparent");
             }
+        } else {
+            if (!transparent) {
+                transparent = true;
+                document.getElementById("navbar").classList.add("navbar-transparent");
+            }
+        }
     }, 17),
 
 }
 
 function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		clearTimeout(timeout);
-		timeout = setTimeout(function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		}, wait);
-		if (immediate && !timeout) func.apply(context, args);
-	};
-};
+    let timeout;
+    return () => {
+        let context = this, args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+        }, wait);
+        if (immediate && !timeout) func.apply(context, args);
+    };
+}

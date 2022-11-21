@@ -33,7 +33,7 @@
 
   <!-- Navbar for medium sized and above screens --> 
   <div class="d-none d-md-block">
-    <nav class="navbar navbar-expand-lg bg-custom navbar-transparent fixed-top navbar-light bg-faded" color-on-scroll="270">
+    <nav id="navbar" class="navbar navbar-expand-lg bg-custom navbar-transparent fixed-top navbar-light bg-faded" color-on-scroll="270">
       <a class="d-none d-lg-block" href="https://github.com/cdk" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
       </a>
       <div class="container">
@@ -86,14 +86,14 @@
       <p>
         Open Source modular Java libraries for Cheminformatics
       </p>
-      <p>
-        <a target="learn" class="scroll btn btn-outline-success btn-white">
+      <p class="btn-block">
+        <a target="learn" class="scroll btn mx-2 btn-outline-success btn-white">
          <i class="fa fa-play"></i> Get Started
         </a>
         <span class="d-md-none">
          <br><br>
         </span>
-        <a target="download" class="scroll btn btn-outline-warning btn-white">
+        <a target="download" class="scroll btn mx-2 btn-outline-warning btn-white">
          <i class="fa fa-download"></i> Download v2.8
         </a>
       </p>
@@ -274,63 +274,88 @@
         </div>
         <br>
         <div class="row justify-content-center">
-          <div class="card-deck">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title"><i class="fa fa-comments"></i>&nbsp;Keep updated</h4>
-                <p class="card-text">There are plenty of ways to stay updated with CDK project. You can follow us on  GitHub or Twitter.</p>
-                <p> In addition to social media the best way to ask for help is on the  <a target="_blank" href="https://lists.sourceforge.net/lists/listinfo/cdk-user">cdk-user mailing list</a>. You can often find updates on new project functionality and usage tips on the developer's <a target="_blank" href="http://pele.farmbio.uu.se/planetcdk/">blog entries</a>.</p>
-              </div>
-              <div class="card-footer">
-                <small>
-                  <a target="_blank" href="https://github.com/cdk"><i class="fa fa-github"></i> GitHub</a>&emsp;
-                  <a target="_blank" href="https://twitter.com/the_cdk"><i class="fa fa-twitter"></i> Twitter</a>&emsp;
-                </small>
+          <div class="row row-cols-1 row-cols-md-2">
+            <div class="col">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h4 class="card-title"><i class="fa fa-comments"></i>&nbsp;Keep updated</h4>
+                  <p class="card-text">There are plenty of ways to stay updated with CDK project. You can follow us on
+                    GitHub or Twitter.</p>
+                  <p> In addition to social media the best way to ask for help is on the <a target="_blank"
+                                                                                            href="https://lists.sourceforge.net/lists/listinfo/cdk-user">cdk-user
+                    mailing list</a>. You can often find updates on new project functionality and usage tips on the
+                    developer's <a target="_blank" href="http://pele.farmbio.uu.se/planetcdk/">blog entries</a>.</p>
+                </div>
+                <div class="card-footer">
+                  <small>
+                    <a target="_blank" href="https://github.com/cdk"><i class="fa fa-github"></i> GitHub</a>&emsp;
+                    <a target="_blank" href="https://twitter.com/the_cdk"><i class="fa fa-twitter"></i> Twitter</a>&emsp;
+                  </small>
+                </div>
               </div>
             </div>
             <div class="d-md-none clearfix">&nbsp;</div>
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title"><i class="fa fa-bug"></i>&nbsp;Issues</h4>
-                <p class="card-text">If you find an issue when using the CDK or would like to request a new feature please report this via GitHub</p>
-              </div>
-              <div class="card-footer">
-                <!-- Place this tag where you want the button to render. -->
-                <a class="github-button" href="https://github.com/cdk/cdk/issues" data-icon="octicon-issue-opened" data-size="large" aria-label="Issue cdk/cdk on GitHub">Issue</a>
+            <div class="col">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h4 class="card-title"><i class="fa fa-bug"></i>&nbsp;Issues</h4>
+                  <p class="card-text">If you find an issue when using the CDK or would like to request a new feature
+                    please report this via GitHub</p>
+                </div>
+                <div class="card-footer">
+                  <!-- Place this tag where you want the button to render. -->
+                  <a class="github-button" href="https://github.com/cdk/cdk/issues" data-icon="octicon-issue-opened"
+                     data-size="large" aria-label="Issue cdk/cdk on GitHub">Issue</a>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div class="clearfix">&nbsp;</div>
         <div class="row justify-content-center">
-          <div class="card-deck">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title"><i class="fa fa-code"></i>&nbsp;Build</h4>
-                <p class="card-text">CDK is built with <a target="_blank" href="https://maven.apache.org/">Maven</a>, you'll need to download and install the Maven Build Tool, mvn. Once Maven is installed, the whole project can be compiled, tested, and installed with the command mvn install.</p>
-                <p>
-                  <kbd>
-                    $> mvn install
-                  </kbd>
-                </p>
-                <p class="card-text">If you just want to use the very latest version, pre-release builds are available as from the <a target="_blank"  href="https://s01.oss.sonatype.org/content/repositories/snapshots/org/openscience/cdk/">OSSRH snapshot repository</a>.</p>
-              </div>
-              <div class="card-footer">
-                <small>
-                  To use these builds add the repository to your pom.xml and change the version to a - SNAPSHOT or LATEST.
-                </small>
+          <div class="row row-cols-1 row-cols-md-2">
+            <div class="col">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h4 class="card-title"><i class="fa fa-code"></i>&nbsp;Build</h4>
+                  <p class="card-text">CDK is built with <a target="_blank" href="https://maven.apache.org/">Maven</a>,
+                    you'll need to download and install the Maven Build Tool, mvn. Once Maven is installed, the whole
+                    project can be compiled, tested, and installed with the command mvn install.</p>
+                  <p>
+                    <kbd>
+                      $> mvn install
+                    </kbd>
+                  </p>
+                  <p class="card-text">If you just want to use the very latest version, pre-release builds are available
+                    as from the <a target="_blank"
+                                   href="https://s01.oss.sonatype.org/content/repositories/snapshots/org/openscience/cdk/">OSSRH
+                      snapshot repository</a>.</p>
+                </div>
+                <div class="card-footer">
+                  <small>
+                    To use these builds add the repository to your pom.xml and change the version to a - SNAPSHOT or
+                    LATEST.
+                  </small>
+                </div>
               </div>
             </div>
             <div class="d-md-none clearfix">&nbsp;</div>
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title"><i class="fa fa-code-fork"></i>&nbsp;Patch</h4>
-                <p class="card-text">
-                  To submit patches please create a <a target="_blank" href="https://github.com/cdk/cdk/pulls">pull request</a> via  <a target="_blank" href="https://github.com/cdk">GitHub</a>. <br><br>To keep things organised please use a separate topic branch for each pull request. This will avoid including unrelated changes from elsewhere with the subject of the patch. 
-                </p>
-              </div>
-              <div class="card-footer">
-                <small>For more information on how to create pull requests see <a target="_blank" href="https://help.github.com/articles/about-pull-requests/">GitHub's Documentation</a></small>
+            <div class="col">
+              <div class="card h-100">
+                <div class="card-body">
+                  <h4 class="card-title"><i class="fa fa-code-fork"></i>&nbsp;Patch</h4>
+                  <p class="card-text">
+                    To submit patches please create a <a target="_blank" href="https://github.com/cdk/cdk/pulls">pull
+                    request</a> via <a target="_blank" href="https://github.com/cdk">GitHub</a>. <br><br>To keep things
+                    organised please use a separate topic branch for each pull request. This will avoid including
+                    unrelated changes from elsewhere with the subject of the patch.
+                  </p>
+                </div>
+                <div class="card-footer">
+                  <small>For more information on how to create pull requests see <a target="_blank"
+                                                                                    href="https://help.github.com/articles/about-pull-requests/">GitHub's
+                    Documentation</a></small>
+                </div>
               </div>
             </div>
           </div>
@@ -451,7 +476,7 @@
         <a target="_blank" href="https://twitter.com/the_cdk"><i class="fa fa-twitter"></i> Twitter</a>&emsp;
         <a target="_blank" href="https://plus.google.com/communities/106618079686730067623"><i class="fa fa-google-plus"></i> Google Plus</a>&emsp;
         |&emsp;
-        <span>2017&nbsp;©&nbsp;All rights reserved.
+        <span>2022&nbsp;©&nbsp;All rights reserved.
         </span>
       </div>
     </div>
