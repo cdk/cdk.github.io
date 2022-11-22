@@ -1,89 +1,61 @@
-var webpack = require('webpack');
-
-var path = require('path');
-
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var CleanWebpackPlugin = require('clean-webpack-plugin');
 var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 var inProduction = (process.env.NODE_ENV === 'production');
 
 module.exports = {
-
-	context: path.resolve('./src'),
-
-	entry: {
-
-		app: [
-			
-			'./js/main.js'
-
-		]
-	},
-
+	entry: './src/js/main.js',
 	output: {
-
-		path: path.resolve(__dirname,'./dist'),
-
-		filename: 'js/bundle.js',
-
-		publicPath: '/'
-
+		path: __dirname + '/dist',
+		filename: inProduction ? 'js/bundle.[chunkhash].js' : 'js/bundle.js',
+		publicPath: '/',
+		clean: true
 	},
 
 	module: {
-		loaders: [{
-			test: /\.js$/,
-			loader: 'babel-loader',
-			exclude: /node_modules/,
-			query: {
-				presets: ['es2015']
+		rules: [
+			{
+				test: /\.js$/,
+				loader: 'babel-loader',
+				exclude: /node_modules/,
+				options: {
+					presets: ['@babel/preset-env']
+				}
+			},
+			{
+				test: /\.css$/,
+				use: [MiniCssExtractPlugin.loader, 'css-loader']
+			},
+			{
+				test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/i,
+				type: 'asset/resource',
+				generator: {
+					filename: 'fonts/[name][ext]'
+				}
+			},
+			{
+				test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/i,
+				type: 'asset/resource',
+				generator: {
+					filename: 'fonts/[name][ext]'
+				}
+			},
+			{
+				test: /\.(jpe?g|png|gif|svg)$/i,
+				type: 'asset/resource',
+				generator: {
+					filename: 'img/[name][ext]'
+				}
 			}
-		},{
-			test: /\.html$/,
-			loader: 'html-loader'
-		},{
-			test: /\.css$/,
-			use: ExtractTextPlugin.extract({
-				use: ["css-loader"],
-				fallback: "style-loader"
-			})
-		},{
-			test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-			loader: "url-loader?limit=10000&mimetype=application/font-woff&name=fonts/[name].[ext]"
-		},{
-			test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-			loader: "file-loader?name=fonts/[name].[ext]"
-		},{
-			test: /\.(jpe?g|png|gif|svg)$/i,
-			loaders: [
-
-				{
-					loader:'file-loader',
-					options: {
-						name: 'img/[name].[ext]'
-					}
-
-				},
-
-				'img-loader'
-
-			]
-  			
-		}]
+		]
 	},
 
 	plugins: [
-		new CleanWebpackPlugin(['dist']),
 		new HtmlWebpackPlugin({
-			template: './index.html'
-		}),
-		new webpack.ProvidePlugin({
-			$: 'jquery',
-			jQuery: 'jquery',
-            Tether: 'tether'
+			template: './src/index.html',
+			filename: 'index.html'
 		}),
 		new BrowserSyncPlugin({
 			server: {
@@ -93,31 +65,16 @@ module.exports = {
 			host: 'localhost',
 			open: false
 		}),
-		new CopyWebpackPlugin([{
-				from: './robots.txt'
-			},{
-				from: './favicon.ico'
-			},{
-				from: './img/**/*',
-				to: './'
-		}]),
-		new ExtractTextPlugin("css/[name].css"),
-		new webpack.LoaderOptionsPlugin({
-			minimize : inProduction
+		new CopyWebpackPlugin({
+			patterns: [
+				{ from: './src/robots.txt' },
+				{ from: './src/favicon.ico' },
+				{ from: './src/img', to: 'img'}
+			]
+		}),
+		new MiniCssExtractPlugin({
+			filename: 'css/[name].css'
 		})
-	]
-
+	],
+	mode: 'production'
 };
-
-
-if (process.env.NODE_ENV === 'production'){
-
-	module.exports.plugins.push(
-	
-		new webpack.optimize.UglifyJsPlugin()
-	
-	);
-
-	module.exports.output.filename = "js/bundle.[chunkhash].js"; 
-
-}

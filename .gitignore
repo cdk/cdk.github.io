@@ -8,6 +8,14 @@
 ehthumbs.db
 Thumbs.db
 
+# editors #
+######################
+/.idea/
+
 # node modules #
 ######################
-node_modules/*
+/node_modules/
+
+# compiled resources #
+######################
+/dist/

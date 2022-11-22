@@ -6,6 +6,19 @@ body {
     background-color: #f1f1f4;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+small {
+    font-size: 80%;
+    font-weight: 400;
+}
+
 .vc{
     display: flex;
     align-items: center;
@@ -97,6 +110,11 @@ body {
 
 .scroll:hover{
     cursor: pointer;
+    text-decoration: none;
+}
+
+a.text-danger:hover, a.text-danger:focus {
+    color: #a71d2a!important;
 }
 
 /* landing section */
