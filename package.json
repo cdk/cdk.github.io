@@ -12,9 +12,9 @@
   "author": "cs76",
   "license": "",
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^9.1.0",
     "@babel/preset-env": "^7.20.2",
+    "@babel/core": "^7.21.3",
+    "babel-loader": "^9.1.2",
     "browser-sync": "^2.27.10",
     "browser-sync-webpack-plugin": "^2.3.0",
     "copy-webpack-plugin": "^11.0.0",
