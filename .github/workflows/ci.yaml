@@ -29,10 +29,14 @@ jobs:
           persist-credentials: false
 
       - name: 🧶 Setup Node
+        id: node_setup
         uses: actions/setup-node@v4
         with:
           node-version-file: 'package.json'
           cache: 'npm'
+
+      - name: ℹ️ Display Node.js version
+        run: echo "Node.js version ${{ steps.node_setup.outputs.node-version }}"
 
       - name: 👩‍🔧 Install dependencies
         run: npm clean-install
@@ -50,6 +54,8 @@ jobs:
 
       - name: 📝 Generate workflow summary
         run: |
+          echo "Node.js version: **${{ steps.node_setup.outputs.node-version }}**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 📦 Webpack Build Summary" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
           sed -r "s/\x1B\[[0-9;]*[mK]//g" build-output.log >> $GITHUB_STEP_SUMMARY
