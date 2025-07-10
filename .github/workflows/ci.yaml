@@ -52,5 +52,5 @@ jobs:
         run: |
           echo "### 📦 Webpack Build Summary" >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
-          cat build-output.log >> $GITHUB_STEP_SUMMARY
+          sed -r "s/\x1B\[[0-9;]*[mK]//g" build-output.log >> $GITHUB_STEP_SUMMARY
           echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
