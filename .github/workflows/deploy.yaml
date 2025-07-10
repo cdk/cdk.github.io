@@ -1,0 +1,42 @@
+name: Deploy to GitHub Pages
+
+on:
+  release:
+    types: [ 'published' ]
+
+  # allows running this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  contents: read    # required for git checkout
+  pages: write      # to deploy to GitHub Pages
+  id-token: write   # to verify the deployment originates from an appropriate source
+  actions: write   # required to write a job summary
+
+jobs:
+  ci:
+    name: 🚀 CI
+    uses: ./.github/workflows/ci.yaml
+    permissions:
+      contents: read
+      actions: write    # required to write a job summary
+
+  # Deploys Pages artifact to GitHub Pages.
+  deploy-pages-artifact:
+    name: Deploy Pages Artifact to GitHub Pages
+    needs: ci
+    # Deploy to github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: 'ubuntu-24.04'
+    steps:
+      # Deploy the artifact from the 'ci' job
+      - name: 🚀 Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: 📝 Generate deployment summary
+        run: |
+          echo "### 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "Website deployed to: ${{ steps.deployment.outputs.page_url }}" >> $GITHUB_STEP_SUMMARY

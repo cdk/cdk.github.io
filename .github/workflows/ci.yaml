@@ -1,0 +1,56 @@
+name: CI Pipeline
+# Produces production artifact, uploads it as workflow artifact
+
+on:
+  push:
+    branches: [source]
+    paths-ignore:
+      - '**.md'
+
+  pull_request:
+    branches: [source]
+    paths-ignore:
+      - '**.md'
+
+  # allows this workflow to be run from another
+  workflow_call:
+
+  # allows running this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: 'ubuntu-22.04'
+    steps:
+      - name: 🛫 Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: 🧶 Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: 'package.json'
+          cache: 'npm'
+
+      - name: 👩‍🔧 Install dependencies
+        run: npm clean-install
+
+      - name: 📦 Build for production
+        id: build_step
+        run: npm run production 2>&1 | tee build-output.log
+
+      - name: 📤 Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        # only run if on source branch or on a tag
+        if: ${{ github.ref == 'refs/heads/source' || startsWith( github.ref, 'refs/tags/' )}}
+        with:
+          path: dist/
+
+      - name: 📝 Generate workflow summary
+        run: |
+          echo "### 📦 Webpack Build Summary" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          sed -r "s/\x1B\[[0-9;]*[mK]//g" build-output.log >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
