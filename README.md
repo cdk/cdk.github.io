@@ -33,5 +33,5 @@ This makes the website available on `http://localhost:8000`.
 
 Deployment to GitHub Pages can be
 
-1. manually run from [this Actions tab](https://github.com/cdk/cdk.github.io/actions/workflows/pages/pages-build-deployment) and
+1. manually run from [this Actions tab](https://github.com/cdk/cdk.github.io/actions/workflows/deploy.yaml) and
 2. runs automatically when a tagged [release](https://github.com/cdk/cdk.github.io/releases) is created on GitHub
