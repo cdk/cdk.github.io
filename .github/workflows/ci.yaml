@@ -21,7 +21,7 @@ on:
 jobs:
   build:
     name: Build
-    runs-on: 'ubuntu-22.04'
+    runs-on: 'ubuntu-24.04'
     steps:
       - name: 🛫 Checkout
         uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
 
       - name: 🧶 Setup Node
         id: node_setup
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version-file: 'package.json'
           cache: 'npm'
